@@ -40,7 +40,7 @@ begin
 				writeln('Numero de cedula: ', cedula);
 				
 				repeat
-					writeln('Indique la estacion de la que desea realizar su viaje');
+					writeln('Indique la estacion de su preferencia');
 					writeln('a) Barinitas');
 					writeln('b) La montaña');
 					writeln('c) La Aguada');
