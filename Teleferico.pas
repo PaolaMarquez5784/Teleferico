@@ -41,15 +41,27 @@ begin
 				
 				repeat
 					writeln('Indique la estacion de su preferencia');
-					writeln('a) Barinitas');
-					writeln('b) La montaña');
-					writeln('c) La Aguada');
-					writeln('d) Loma Redonda');
-					writeln('e) Pico Espejo');
+					writeln('1. Barinitas');
+					writeln('2. La montaña');
+					writeln('3. La Aguada');
+					writeln('4. Loma Redonda');
+					writeln('5. Pico Espejo');
 					write('Estacion: ');
 					readln(estaciones);
 					
-				until
+				until (estaciones = '1') or (estaciones = '2') or (estaciones = '3') or (estaciones = '4') or (estaciones = '5');
+    				case estacion of
+					'1': begin
+     					end;
+	  				'2': begin
+     					end;
+	  				'3': begin
+     					end;
+	  				'4': begin
+     					end;
+	  				'5': begin
+       					end;
+	  			end;
 			end;
 			
 
