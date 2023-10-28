@@ -10,16 +10,16 @@ var
 begin
 	cantBoletos := 0; //Inicializamos la cantidad de boletos en cero.
 	
-		writeln('*************************************************');
-		writeln('  BIENVENIDO AL SISTEMA DEL TELEFERICO DE MERIDA');
-		writeln('*************************************************');
+		writeln('||*************************************************||');
+		writeln('||  BIENVENIDO AL SISTEMA DEL TELEFERICO DE MERIDA ||');
+		writeln('||*************************************************||');
 	repeat
-		writeln('||---------------------------------------------||');
-		writeln('||--------------- MENU PRINCIPAL --------------||');
-		writeln('|| 1. Comprar Boletos                          ||');
-		writeln('|| 2. Ver Sistema                              ||');
-		writeln('|| 3. Salir                                    ||');
-		writeln('||---------------------------------------------||');
+		writeln('||-------------------------------------------------||');
+		writeln('||----------------- MENU PRINCIPAL ----------------||');
+		writeln('|| 1. Comprar Boletos                              ||');
+		writeln('|| 2. Ver Sistema                                  ||');
+		writeln('|| 3. Salir                                        ||');
+		writeln('||-------------------------------------------------||');
 		write('|| Indique su opcion y presione enter: ');
 		readln(op);
 		delay (1000);
