@@ -2,8 +2,6 @@ Program TelefericoMerida;
 uses crt;
 const
 	cantMaxPasajeros = 60;
-	PrecioGeneral = 20;
-	PrecioEspecial = 12;
 var
 	BoletosV, BoletosC, asientosD,edadAdultos, edadNinos, cantBoletos, op: integer;
 	estaciones, tramos, tipoBoleto: string;
