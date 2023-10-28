@@ -39,6 +39,15 @@ begin
 				
 				if (cantBoletos <= 60) then
 					begin
+						writeln('||------------------------------||');
+						writeln('|| SELECCIONE EL TIPO DE BOLETO ||');
+						writeln('||------------------------------||');
+						writeln('|| 1. Boleto General            ||');
+						writeln('|| 2. Boleto Especial           ||');
+						writeln('||------------------------------||');
+						write('|| Ingrese el numero de su eleccion y presione ENTER: ');
+						readln(tipoBoleto);
+      
 						writeln('---------------------------------------------------------------');
 						writeln('Para continuar con su transaccion, ingrese los siguientes datos');
 						writeln('---------------------------------------------------------------');
