@@ -2,13 +2,14 @@ Program TelefericoMerida;
 uses crt;
 const
 	cantMaxPasajeros = 60;
+	boletoIdaVuelta = 40;
 	boletoGeneral = 20;
 	boletoEspecial = 12;
 var
 	BoletosV, BoletosC, asientosD, edad, cantBoletos, op: integer;
 	estaciones, tramos, tipoBoleto, resp: string;
 	nombre, apellido, cedula: string;
-	montoTotal, precioTotalBoleto: real;
+	montoTotal, precioTotalBoletoGeneral, precioTotalBoletoEspecial, precioTotalBoletoIdaVuelta: real;
 begin
 	cantBoletos := 0; //Inicializamos la cantidad de boletos en cero.
 		
@@ -252,8 +253,8 @@ begin
 									writeln('||--------------------------------------------------||');
 									writeln('||Usted selecciono la opcion 1. Boleto ida/vuelta.  ||');
 									//calculamos el costo total segun la cantidad de boletos
-									precioTotalBoleto := (40 * cantBoletos);
-									writeln('|| Cuenta total: $', precioTotalBoleto:5:2); 
+									precioTotalBoletoIdaVuelta := (boletoIdaVuelta * cantBoletos);
+									writeln('|| Cuenta total: $', precioTotalBoletoIdaVuelta:5:2); 
 									writeln('||--------------------------------------------------||');
 									delay(3000);
 								end;
@@ -262,8 +263,8 @@ begin
 									writeln('||---------------------------------------------||');
 									writeln('||Usted selecciono la opcion 2. Boleto General ||');
 									//calculamos el costo total segun la cantidad de boletos
-									precioTotalBoleto := (20 * cantBoletos);
-									writeln('|| Cuenta total: $', precioTotalBoleto:5:2); 
+									precioTotalBoletoGeneral := (boletoGeneral * cantBoletos);
+									writeln('|| Cuenta total: $', precioTotalBoletoGeneral:5:2); 
 									writeln('||---------------------------------------------||');
 									delay(3000);
 								end;
@@ -272,8 +273,8 @@ begin
 									writeln('||-----------------------------------------------||');
 									writeln('|| Usted selecciono la opcion 3. Boleto Especial ||');
 									//calculamos el costo total segun la cantidad de boletos
-									precioTotalBoleto := (12 * cantBoletos);
-									writeln('|| Cuenta total: $', precioTotalBoleto:5:2); 
+									precioTotalBoletoEspecial := (boletoEspecial * cantBoletos);
+									writeln('|| Cuenta total: $', precioTotalBoletoEspecial:5:2); 
 									writeln('||-----------------------------------------------||');
 									delay(3000);
 								end;
