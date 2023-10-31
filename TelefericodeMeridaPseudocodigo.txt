@@ -1,0 +1,459 @@
+Programa TelefericoMerida;
+constantes
+	cantMaxPasajeros = 60;
+	boletoIdaVuelta = 40;
+	boletoGeneral = 20;
+	boletoEspecial = 12;
+variables
+	BoletosV, BoletosC, asientosD, edad, cantBoletos, op, resp, totalidadVentas: entero;
+	boletosIdaVuelta, boletosGenerales, boletosDisponibles, montoTotal, totalBoletos: entero;
+	totalBoletosCancelados, totalBoletosGenerales, totalBoletosIdaVuelta: entero;
+	nombre, apellido, cedula, estaciones, tramos, tipoBoleto: cadena;
+	montoTotalIdaVuelta, montoTotalGeneral, ventaBoletosGenerales, ventaBoletosIdaVuelta: real;
+	precioBoletoGeneral, precioBoletoIdaVuelta, precioBoletoEspecial: real;
+INICIO
+	//Inicializamos todo en cero.
+	cantBoletos := 0; 
+	totalidadVentas := 0;
+	precioBoletoGeneral := 0;
+	precioBoletoIdaVuelta := 0;
+	totalBoletos := 0;
+	montoTotalIdaVuelta := 0;
+	montoTotalGeneral := 0;
+	BoletosV := 0;
+	BoletosC := 0;
+	asientosD := cantMaxPasajeros;
+
+		mostrar('||********************************************************||');
+		mostrar('||     BIENVENIDO AL SISTEMA DEL TELEFERICO DE MERIDA     ||');
+		mostrar('||********************************************************||');
+
+	repetir
+		limpiarPantalla;
+		mostrar('||========================================================||');
+		mostrar('||-------------------- MENU PRINCIPAL --------------------||');
+		mostrar('||========================================================||');
+		mostrar('|| 1. Comprar Boletos                                     ||');
+		mostrar('|| 2. Ver Sistema                                         ||');
+		mostrar('|| 3. Salir                                               ||');
+		mostrar('||--------------------------------------------------------||');
+		escribir('|| Indique su opcion y presione enter: ');
+		leer(op);
+		
+		si op = 1 entonces
+			inicio	
+				repetir
+					limpiarPantalla;
+					mostrar('||==================================================================||');
+					mostrar('|| EL TELEFERICO DE MERIDA POSEE 5 ESTACIONES DIVIDIDAS EN 4 TRAMOS ||');
+					mostrar('||==================================================================||');
+					
+					mostrar('||------------------------------------------||');
+					mostrar('|| Seleccione la estacion de su preferencia ||');
+					mostrar('||------------------------------------------||');
+					mostrar('||                ESTACIONES                ||');
+					mostrar('||------------------------------------------||');
+					mostrar('|| 1. Barinitas                             ||');
+					mostrar('|| 2. La montana                            ||');
+					mostrar('|| 3. La Aguada                             ||');
+					mostrar('|| 4. Loma Redonda                          ||');
+					mostrar('|| 5. Pico Espejo                           ||');
+					mostrar('||------------------------------------------||');
+					escribir('|| Indique el numero y presione ENTER: ');
+					leer(estaciones);
+					
+					segun estaciones hacer
+						'1': inicio
+								mostrar('|***********************************************|');
+								mostrar('| Usted ha seleccionado la estacion "Barinitas" |');
+								mostrar('|***********************************************|');
+						fin;
+						
+						'2': fin
+								mostrar('|************************************************|');
+								mostrar('| Usted ha seleccionado la estacion "La Montana" |');
+								mostrar('|************************************************|');
+						inicio;
+						
+						'3': inicio
+								mostrar('|***********************************************|');
+								mostrar('| Usted ha seleccionado la estacion "La Aguada" |');
+								mostrar('|***********************************************|');
+						fin;
+						
+						'4': inicio
+								mostrar('|**************************************************|');
+								mostrar('| Usted ha seleccionado la estacion "Loma Redonda" |');
+								mostrar('|**************************************************|');
+						fin;
+						
+						'5': inicio
+								mostrar('||-------------------------------------------------||');
+								mostrar('|| Usted ha seleccionado la estacion "Pico Espejo" ||');
+								mostrar('||-------------------------------------------------||');
+						fin;
+					fin;
+				hasta que (estaciones = '1') o (estaciones = '2') o (estaciones = '3') o (estaciones = '4') o (estaciones = '5');
+				
+				repetir
+					limpiarPantalla;
+					mostrar('||------------------------------------------||');
+					mostrar('|| Los tramos disponibles por estacion son: ||');
+					mostrar('||------------------------------------------||');
+					mostrar('||                  TRAMOS                  ||');
+					mostrar('||------------------------------------------||');
+					mostrar('|| 1. Barinitas - La Montana                ||');
+					mostrar('|| 2. La montana - La Aguada                ||');
+					mostrar('|| 3. La Aguada - Loma Redonda              ||');
+					mostrar('|| 4. Loma Redonda - Pico Espejo            ||');
+					mostrar('||------------------------------------------||');
+					escribir('|| Indique el numero y presione ENTER: ');
+					leer(tramos);
+					
+					segun tramos hacer
+						'1': inicio
+								mostrar('|*********************************************************|');
+								mostrar('| Usted ha seleccionado el tramo "Barinitas - La Montana" |');
+								mostrar('|*********************************************************|');
+						fin;
+						
+						'2': inicio
+								mostrar('|*********************************************************|');
+								mostrar('| Usted ha seleccionado el tramo "La montana - La Aguada" |');
+								mostrar('|*********************************************************|');
+						fin;
+						
+						'3': inicio
+								mostrar('|***********************************************************|');
+								mostrar('| Usted ha seleccionado el tramo "La Aguada - Loma Redonda" |');
+								mostrar('|***********************************************************|');
+						fin;
+						
+						'4': inicio
+								mostrar('|*************************************************************|');
+								mostrar('| Usted ha seleccionado el tramo "Loma Redonda - Pico Espejo" |');
+								mostrar('|*************************************************************|');
+						fin;
+					fin;
+				hasta que (tramos = '1') o (tramos = '2') o (tramos = '3') o (tramos = '4');
+				
+				limpiarPantalla;
+				mostrar('||*****************************************************************||');
+				mostrar('||   AVISO: La capacidad maxima de pasajeros por viaje es de ', cantMaxPasajeros, '    ||');
+				mostrar('||*****************************************************************||');
+				
+				mostrar('||-----------------------------------------------------------------||');
+				mostrar('|| Para continuar con su transaccion, ingrese los siguientes datos ||');
+				mostrar('||-----------------------------------------------------------------||');
+				escribir('||Nombre: ');
+				leer(nombre);
+				
+				escribir('||Apellido: ');
+				leer(apellido);
+				
+				escribir('||Numero de Cedula: ');
+				leer(cedula);
+				
+				limpiarPantalla;
+				mostrar('||---------------------------------------------||');
+				escribir('|| Cuantos boletos desea comprar? (MAXIMO 60): ');
+				leer(cantBoletos);
+
+				si (cantBoletos <= 60) entonces		
+					inicio
+						repetir
+							limpiarPantalla;
+							mostrar('||---------------------------------------------||');
+							mostrar('||          SELECCIONE EL TIPO DE BOLETO       ||');
+							mostrar('||---------------------------------------------||');
+							mostrar('|| 1. Boleto ida/vuelta  |  {PRECIO: $40.00}   ||');
+							mostrar('|| 2. Boleto General     |  {PRECIO: $20.00}   ||');
+							mostrar('||---------------------------------------------||');
+							escribir('|| Ingrese el numero de su eleccion y presione ENTER: ');
+							leer(tipoBoleto);
+																	 
+							segun tipoBoleto hacer
+								'1': inicio
+									mostrar('||**************************************************||');
+									mostrar('||Usted selecciono la opcion 1. Boleto ida/vuelta.  ||');
+									mostrar('||**************************************************||');
+									
+									limpiarPantalla;
+									mostrar('||--------------------------------------------------------------||');
+									mostrar('||         Viaja con personas de tercera edad o Ninos?          ||');
+									mostrar('||--------------------------------------------------------------||');
+									mostrar('|| 1. Si                                                        ||');
+									mostrar('|| 2. No                                                        ||');
+									mostrar('||--------------------------------------------------------------||');
+									escribir('|| Indique su respuesta y presione ENTER: ');
+									leer(resp);
+									
+									si (resp = 1) entonces
+										inicio
+											mientras (resp = 1) hacer
+												inicio
+													mostrar('||--------------------------------------------------------------||');
+													escribir('|| Ingrese la edad del nino/a y/o adulto mayor: ');
+													leer(edad); 
+									
+												si (edad >= 3) y (edad <= 12) o (edad >= 65) entonces														
+													inicio
+														mostrar('||--------------------------------------------------------------||');
+														mostrar('|| Se le incrementara $12 del Boleto Especial a su cuenta total ||');
+														mostrar('||--------------------------------------------------------------||');
+															
+														//calculamos el costo total segun la cantidad de boletos y tipo de boletos
+														precioBoletoIdaVuelta := boletoIdaVuelta;
+														precioBoletoEspecial := boletoEspecial * 2;
+														montoTotalIdaVuelta := (precioBoletoIdaVuelta + precioBoletoEspecial) * cantBoletos;
+															
+														limpiarPantalla;
+														mostrar('||*********************************************************||');
+														mostrar('||                      DATOS DE SU COMPRA                 ||');
+														mostrar('||*********************************************************||');
+														mostrar('||  Nombre: ', (nombre));
+														mostrar('||  Apellido: ', (apellido));
+														mostrar('||  Cedula: ', (cedula));
+														mostrar('||  Boletos comprados: ', cantBoletos);
+														mostrar('||=========================================================||');
+														mostrar('|| Cuenta total->  $', montoTotalIdaVuelta:5:2);
+														mostrar('||*********************************************************||');
+													fin
+												sino 
+													si (edad > 12) entonces
+														inicio
+															mostrar('||-----------------------------------------------------------||');
+															mostrar('|| Los ninos/as mayores de 12 anos cancelan el precio Normal ||');
+															mostrar('||-----------------------------------------------------------||');
+																	
+															precioBoletoIdaVuelta := boletoIdaVuelta;
+															montoTotalIdaVuelta := precioBoletoIdaVuelta * cantBoletos;
+																	
+															limpiarPantalla;
+															mostrar('||*********************************************************||');
+															mostrar('||                      DATOS DE SU COMPRA                 ||');
+															mostrar('||*********************************************************||');
+															mostrar('||  Nombre: ', (nombre));
+															mostrar('||  Apellido: ', (apellido));
+															mostrar('||  Cedula: ', (cedula));
+															mostrar('||  Boletos comprados: ', cantBoletos);
+															mostrar('||=========================================================||');
+															mostrar('|| Cuenta total->  $', montoTotalIdaVuelta:5:2);
+															mostrar('||*********************************************************||');
+														fin
+													Sino 
+													si (edad < 3) entonces
+														inicio
+															mostrar(' ');
+															mostrar('||**********************************************************||');
+															mostrar('|| LOS NINOS MENORES DE 3 ANOS QUEDAN TOTALMENTE EXONERADOS ||');
+															mostrar('||**********************************************************||');
+																		
+															precioBoletoIdaVuelta := boletoIdaVuelta;
+															montoTotalIdaVuelta := precioBoletoIdaVuelta;
+																		
+															limpiarPantalla;
+															mostrar('||*********************************************************||');
+															mostrar('||                      DATOS DE SU COMPRA                 ||');
+															mostrar('||*********************************************************||');
+															mostrar('||  Nombre: ', (nombre));
+															mostrar('||  Apellido: ', (apellido));
+															mostrar('||  Cedula: ', (cedula));
+															mostrar('||  Boletos comprados: ', cantBoletos);
+															mostrar('||=========================================================||');
+															mostrar('|| Cuenta total->  $', montoTotalIdaVuelta:5:2);
+															mostrar('||*********************************************************||');
+														fin;
+												fin;
+										fin 
+									Sino
+										si (resp = 2) entonces
+											inicio
+												limpiarPantalla;
+											
+												montoTotalIdaVuelta := boletoIdaVuelta * cantBoletos;
+
+												mostrar('||*********************************************************||');
+												mostrar('||                      DATOS DE SU COMPRA                 ||');
+												mostrar('||*********************************************************||');
+												mostrar('||  Nombre: ', (nombre));
+												mostrar('||  Apellido: ', (apellido));
+												mostrar('||  Cedula: ', (cedula));
+												mostrar('||  Boletos comprados: ', cantBoletos);
+												mostrar('||=========================================================||');
+												mostrar('|| Cuenta total->  $', montoTotalIdaVuelta:5:2);
+												mostrar('||*********************************************************||');
+											fin;
+								fin; //fin opcion 1
+								
+								'2': inicio
+									mostrar('||**************************************************||');
+									mostrar('||Usted selecciono la opcion 2. Boleto General.     ||');
+									mostrar('||**************************************************||');
+									
+									limpiarPantalla;
+									mostrar('||--------------------------------------------------------------||');
+									mostrar('||         Viaja con personas de tercera edad o Ninos?          ||');
+									mostrar('||--------------------------------------------------------------||');
+									mostrar('|| 1. Si                                                        ||');
+									mostrar('|| 2. No                                                        ||');
+									mostrar('||--------------------------------------------------------------||');
+									escribir('|| Indique su respuesta y presione ENTER: ');
+									leer(resp);
+									
+									si (resp = 1) entonces
+										inicio
+											mientras (resp = 1) hacer
+												inicio
+													mostrar('||--------------------------------------------------------------||');
+													escribir('|| Ingrese la edad del nino/a y/o adulto mayor: ');
+													leer(edad); 
+									
+											si (edad >= 3) y (edad <= 12) o (edad >= 65) entonces
+												inicio
+													mostrar('  ');
+													mostrar('||--------------------------------------------------------------||');
+													mostrar('|| Se le incrementara $12 del Boleto Especial a su cuenta total ||');
+													mostrar('||--------------------------------------------------------------||');
+															
+													//calculamos el costo total segun la cantidad de boletos y tipo de boletos
+													precioBoletoGeneral := boletoGeneral;
+													precioBoletoEspecial := boletoEspecial; 
+													montoTotalGeneral := (precioBoletoGeneral + precioBoletoEspecial) * cantBoletos;
+															
+													limpiarPantalla;
+													mostrar('||*********************************************************||');
+													mostrar('||                      DATOS DE SU COMPRA                 ||');
+													mostrar('||*********************************************************||');
+													mostrar('||  Nombre: ', (nombre));
+													mostrar('||  Apellido: ', (apellido));
+													mostrar('||  Cedula: ', (cedula));
+													mostrar('||  Boletos comprados: ', cantBoletos);
+													mostrar('||=========================================================||');
+													mostrar('|| Cuenta total->  $', montoTotalGeneral:5:2);
+													mostrar('||*********************************************************||');
+												fin
+											Sino
+												si (edad > 12) entonces
+													inicio
+														mostrar('||-----------------------------------------------------------||');
+														mostrar('|| Los ninos/as mayores de 12 anos cancelan el precio Normal ||');
+														mostrar('||-----------------------------------------------------------||');
+																	
+														precioBoletoGeneral := boletoGeneral;
+														montoTotalGeneral := precioBoletoGeneral * cantBoletos;
+																	
+														limpiarPantalla;
+														mostrar('||*********************************************************||');
+														mostrar('||                      DATOS DE SU COMPRA                 ||');
+														mostrar('||*********************************************************||');
+														mostrar('||  Nombre: ', (nombre));
+														mostrar('||  Apellido: ', (apellido));
+														mostrar('||  Cedula: ', (cedula));
+														mostrar('||  Boletos comprados: ', cantBoletos);
+														mostrar('||=========================================================||');
+														mostrar('|| Cuenta total->  $', montoTotalGeneral:5:2);
+														mostrar('||*********************************************************||');
+													fin
+												Sino
+												si (edad < 3) entonces
+													inicio
+														mostrar('||**********************************************************||');
+														mostrar('|| LOS NINOS MENORES DE 3 ANOS QUEDAN TOTALMENTE EXONERADOS ||');
+														mostrar('||**********************************************************||');
+																		
+														precioBoletoGeneral := boletoGeneral;
+														montoTotalGeneral := precioBoletoGeneral;
+																		
+														limpiarPantalla;
+														mostrar('||*********************************************************||');
+														mostrar('||                      DATOS DE SU COMPRA                 ||');
+														mostrar('||*********************************************************||');
+														mostrar('||  Nombre: ', (nombre));
+														mostrar('||  Apellido: ', (apellido));
+														mostrar('||  Cedula: ', (cedula));
+														mostrar('||  Boletos comprados: ', cantBoletos);
+														mostrar('||=========================================================||');
+														mostrar('|| Cuenta total->  $', montoTotalGeneral:5:2);
+														mostrar('||*********************************************************||');
+													fin;
+												fin;
+										fin 
+									Sino
+										si (resp = 2) entonces
+											inicio
+												limpiarPantalla;
+												
+												precioBoletoGeneral := boletoGeneral * cantBoletos;
+												
+												textcolor(lightgreen);
+												mostrar('||*********************************************************||');
+												mostrar('||                      DATOS DE SU COMPRA                 ||');
+												mostrar('||*********************************************************||');
+												mostrar('||  Nombre: ', (nombre));
+												mostrar('||  Apellido: ', (apellido));
+												mostrar('||  Cedula: ', (cedula));
+												mostrar('||  Boletos comprados: ', cantBoletos);
+												mostrar('||=========================================================||');
+												mostrar('|| Cuenta total->  $', precioBoletoGeneral:5:2);
+												mostrar('||*********************************************************||');
+											fin;
+								fin; //fin opcion 2
+							fin; //fin del case
+							
+						hasta que (tipoBoleto = '1') o (tipoBoleto = '2');
+					fin
+					Sino si (cantBoletos > 60) entonces
+						inicio
+							mostrar(' ');
+							mostrar('||--------------------------------------------------------------------------||');
+							mostrar('|| Excede el limite de la capacidad maxima de pasajeros, intente nuevamente ||');
+							mostrar('||--------------------------------------------------------------------------||');
+							
+							limpiarPantalla();
+						fin;
+				fin
+		Sino
+			si op = 2 entonces
+			
+				asientosD := asientosD - cantBoletos;
+				boletosGenerales := cantBoletos;
+				boletosIdaVuelta := cantBoletos;
+				BoletosV := boletosGenerales + boletosIdaVuelta;
+				totalBoletosCancelados := boletosC;
+				totalBoletosGenerales := boletosGenerales * 20;
+				totalBoletosIdaVuelta := boletosIdaVuelta * 40;
+				montoTotal := totalBoletosGenerales + totalBoletosIdaVuelta;
+				
+				ventaBoletosGenerales := boletosGenerales + totalBoletosGenerales;
+				ventaBoletosIdaVuelta := boletosIdaVuelta + totalBoletosIdaVuelta;
+				totalidadVentas := totalidadVentas + BoletosV;
+				
+				inicio
+					limpiarPantalla;
+					mostrar('||=========================================================||');
+					mostrar('||              SISTEMA DE CONTROL DE BOLETOS              ||');
+					mostrar('||=========================================================||');
+					mostrar('|| Total de Boletos vendidos: ', totalidadVentas, '        ||');
+					mostrar('|| Boletos Generales vendidos: ', totalBoletosGenerales, ' ||');
+					mostrar('|| Boletos Ida/Vuelta vendidos: ', totalBoletosGenerales, '||');
+					mostrar('|| Boletos disponibles: ', asientosD, '                    ||');
+					mostrar('||=========================================================||');
+					mostrar(' ');
+					mostrar(' ');
+					
+					mostrar('||=========================================================||');
+					mostrar('||                    REPORTE DE VENTAS                    ||');
+					mostrar('||=========================================================||');
+					mostrar('|| Ventas realizadas del día: ', montoTotal, '             ||');
+					mostrar('|| Ventas boletos Generales: ', ventaBoletosGenerales, '   ||');
+					mostrar('|| Ventas boletos Ida/Vuelta: ', ventaBoletosIdaVuelta, '  ||');
+					mostrar('|| Total ventas: ', totalidadVentas, '                     ||');
+					mostrar('||=========================================================||');
+				fin;
+	hasta que op = 3
+FIN.
+
+{Elaborado por:
+* Paola Márquez. C.I: 27.125.784
+* Enderson Velasquez. C.I: 30.141.384}
