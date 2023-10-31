@@ -6,26 +6,54 @@ const
 	boletoGeneral = 20;
 	boletoEspecial = 12;
 var
-	BoletosV, BoletosC, asientosD, edad, cantBoletos, op: integer;
-	estaciones, tramos, tipoBoleto, resp: string;
-	nombre, apellido, cedula: string;
-	montoTotal, precioTotalBoletoGeneral, precioTotalBoletoEspecial, precioTotalBoletoIdaVuelta: real;
+	BoletosV, BoletosC, asientosD, edad, cantBoletos, op, resp, totalidadVentas: integer;
+	boletosIdaVuelta, boletosGenerales, boletosDisponibles, montoTotal, totalBoletos: integer;
+	totalBoletosCancelados, totalBoletosGenerales, totalBoletosIdaVuelta: integer;
+	nombre, apellido, cedula, estaciones, tramos, tipoBoleto: string;
+	montoTotalIdaVuelta, montoTotalGeneral, ventaBoletosGenerales, ventaBoletosIdaVuelta: real;
+	precioBoletoGeneral, precioBoletoIdaVuelta, precioBoletoEspecial: real;
 begin
-	cantBoletos := 0; //Inicializamos la cantidad de boletos en cero.
+	//Inicializamos todo en cero.
+	cantBoletos := 0; 
+	totalidadVentas := 0;
+	precioBoletoGeneral := 0;
+	precioBoletoIdaVuelta := 0;
+	totalBoletos := 0;
+	montoTotalIdaVuelta := 0;
+	montoTotalGeneral := 0;
+	BoletosV := 0;
+	BoletosC := 0;
+	asientosD := cantMaxPasajeros;
 		
 		textcolor(yellow);
+		Gotoxy(10,4);
 		writeln('||********************************************************||');
+		Gotoxy(10,5);
 		writeln('||     BIENVENIDO AL SISTEMA DEL TELEFERICO DE MERIDA     ||');
+		Gotoxy(10,6);
 		writeln('||********************************************************||');
+		writeln();
+		delay(3500);
+
 	repeat
+		clrscr;
 		textcolor(white);
-		writeln(' ');
-		writeln('||---------------------------------------------||');
-		writeln('||--------------- MENU PRINCIPAL --------------||');
-		writeln('|| 1. Comprar Boletos                          ||');
-		writeln('|| 2. Ver Sistema                              ||');
-		writeln('|| 3. Salir                                    ||');
-		writeln('||---------------------------------------------||');
+		writeln();
+		Gotoxy(10,7);
+		writeln('||========================================================||');
+		Gotoxy(10,8);
+		writeln('||-------------------- MENU PRINCIPAL --------------------||');
+		Gotoxy(10,9);
+		writeln('||========================================================||');
+		Gotoxy(10,10);
+		writeln('|| 1. Comprar Boletos                                     ||');
+		Gotoxy(10,11);
+		writeln('|| 2. Ver Sistema                                         ||');
+		Gotoxy(10,12);
+		writeln('|| 3. Salir                                               ||');
+		Gotoxy(10,13);
+		writeln('||--------------------------------------------------------||');
+		Gotoxy(10,14);
 		write('|| Indique su opcion y presione enter: ');
 		readln(op);
 		delay (1000);
@@ -35,6 +63,11 @@ begin
 				repeat
 					clrscr;
 					textcolor(white);
+					writeln('||==================================================================||');
+					writeln('|| EL TELEFERICO DE MERIDA POSEE 5 ESTACIONES DIVIDIDAS EN 4 TRAMOS ||');
+					writeln('||==================================================================||');
+					
+					writeln(' ');
 					writeln('||------------------------------------------||');
 					writeln('|| Seleccione la estacion de su preferencia ||');
 					writeln('||------------------------------------------||');
@@ -74,7 +107,7 @@ begin
 								writeln('|***********************************************|');
 								writeln('| Usted ha seleccionado la estacion "La Aguada" |');
 								writeln('|***********************************************|');
-								delay(1500);
+								delay(2000);
 						end;
 						
 						'4': begin
@@ -96,13 +129,12 @@ begin
 						end;
 					end;
 				until (estaciones = '1') or (estaciones = '2') or (estaciones = '3') or (estaciones = '4') or (estaciones = '5');
-				
 				repeat
 					clrscr;
 					textcolor(white);
 					writeln(' ');
 					writeln('||------------------------------------------||');
-					writeln('|| Seleccione el tramo de su preferencia    ||');
+					writeln('|| Los tramos disponibles por estacion son: ||');
 					writeln('||------------------------------------------||');
 					writeln('||                  TRAMOS                  ||');
 					writeln('||------------------------------------------||');
@@ -174,58 +206,6 @@ begin
 				writeln(' ');
 				write('||Numero de Cedula: ');
 				readln(cedula);
-
-				writeln(' ');
-				writeln('||---------------------------------------------||');
-				writeln('|| Viaja con personas de tercera edad o Ninos? ||');
-				writeln('|| 1. Si                                       ||');
-				writeln('|| 2. No                                       ||');
-				writeln('||---------------------------------------------||');
-				write('|| Indique su respuesta y presione ENTER: ');
-				readln(resp);
-				
-				case resp of
-					'1': begin
-						textcolor(white);
-						writeln('  ');
-						writeln('||---------------------------------------------||');
-						write('|| Ingrese la edad del nino/a y/o adulto mayor: ');
-						readln(edad); 
-						
-							if (edad >= 3) and (edad <= 12) or (edad >= 65) then
-								begin
-									writeln('  ');
-									writeln('||---------------------------------------------------------------------||');
-									writeln('|| Debe escoger el Boleto "Especial" para continuar con su transaccion ||');
-									writeln('||---------------------------------------------------------------------||');
-									delay(2000);
-								end
-							else 
-								if (edad > 12) then 
-									begin
-										writeln('||------------------------------------------------------||');
-										writeln('|| Los ninos/as mayores de 12 anos pagan Boleto General ||');
-										writeln('||------------------------------------------------------||');
-									end
-								else 
-									if (edad < 3) then
-										begin
-											textcolor(yellow);
-											writeln(' ');
-											writeln('||**********************************************************||');
-											writeln('|| LOS NINOS MENORES DE 3 ANOS QUEDAN TOTALMENTE EXONERADOS ||');
-											writeln('||**********************************************************||');
-											delay(2000);
-										end;
-					end;
-					'2': begin
-						writeln('  ');
-						writeln('||---------------------------------------------||');
-						writeln('||  Puede continuar con su transaccion normal  ||');
-						writeln('||---------------------------------------------||');
-						delay(2000);
-					end;
-				end;
 				
 				clrscr;
 				writeln('||---------------------------------------------||');
@@ -242,76 +222,328 @@ begin
 							writeln('||---------------------------------------------||');
 							writeln('|| 1. Boleto ida/vuelta  |  {PRECIO: $40.00}   ||');
 							writeln('|| 2. Boleto General     |  {PRECIO: $20.00}   ||');
-							writeln('|| 3. Boleto Especial    |  {PRECIO: $12.00}   ||');
-							writeln('|| 4. Ver Factura                              ||');
 							writeln('||---------------------------------------------||');
 							write('|| Ingrese el numero de su eleccion y presione ENTER: ');
 							readln(tipoBoleto);
 																	 
 							case tipoBoleto of
 								'1': begin
-									writeln('||--------------------------------------------------||');
+									writeln('||**************************************************||');
 									writeln('||Usted selecciono la opcion 1. Boleto ida/vuelta.  ||');
-									//calculamos el costo total segun la cantidad de boletos
-									precioTotalBoletoIdaVuelta := (boletoIdaVuelta * cantBoletos);
-									writeln('|| Cuenta total: $', precioTotalBoletoIdaVuelta:5:2); 
-									writeln('||--------------------------------------------------||');
-									delay(3000);
-								end;
+									writeln('||**************************************************||');
+									
+									clrscr;
+									writeln(' ');
+									writeln('||--------------------------------------------------------------||');
+									writeln('||         Viaja con personas de tercera edad o Ninos?          ||');
+									writeln('||--------------------------------------------------------------||');
+									writeln('|| 1. Si                                                        ||');
+									writeln('|| 2. No                                                        ||');
+									writeln('||--------------------------------------------------------------||');
+									write('|| Indique su respuesta y presione ENTER: ');
+									readln(resp);
+									
+									if (resp = 1) then
+										begin
+											while (resp = 1) do
+												begin
+													writeln('  ');
+													writeln('||--------------------------------------------------------------||');
+													write('|| Ingrese la edad del nino/a y/o adulto mayor: ');
+													readln(edad); 
+									
+													if (edad >= 3) and (edad <= 12) or (edad >= 65) then														
+														begin								
+															writeln('  ');
+															writeln('||--------------------------------------------------------------||');
+															writeln('|| Se le incrementara $12 del Boleto Especial a su cuenta total ||');
+															writeln('||--------------------------------------------------------------||');
+															delay(2000);
+															
+															//calculamos el costo total segun la cantidad de boletos y tipo de boletos
+															precioBoletoIdaVuelta := boletoIdaVuelta;
+															precioBoletoEspecial := boletoEspecial * 2; //SE MULTIPLICA POR 2 YA QUE SE DEBE COBRAR TANTO LA IDA COMO EL REGRESO
+															montoTotalIdaVuelta := (precioBoletoIdaVuelta + precioBoletoEspecial) * cantBoletos;
+															
+															clrscr;
+															writeln(' ');
+															textcolor(lightgreen);
+															writeln('||*********************************************************||');
+															writeln('||                      DATOS DE SU COMPRA                 ||');
+															writeln('||*********************************************************||');
+															writeln('||  Nombre: ', (nombre));
+															writeln('||  Apellido: ', (apellido));
+															writeln('||  Cedula: ', (cedula));
+															writeln('||  Boletos comprados: ', cantBoletos);
+															writeln('||=========================================================||');
+															writeln('|| Cuenta total->  $', montoTotalIdaVuelta:5:2);
+															writeln('||*********************************************************||');
+															delay(3500);
+														end
+														else 
+															if (edad > 12) then 
+																begin
+																	writeln('||-----------------------------------------------------------||');
+																	writeln('|| Los ninos/as mayores de 12 anos cancelan el precio Normal ||');
+																	writeln('||-----------------------------------------------------------||');
+																	
+																	precioBoletoIdaVuelta := boletoIdaVuelta;
+																	montoTotalIdaVuelta := precioBoletoIdaVuelta * cantBoletos;
+																	
+																	clrscr;
+																	writeln(' ');
+																	textcolor(lightgreen);
+																	writeln('||*********************************************************||');
+																	writeln('||                      DATOS DE SU COMPRA                 ||');
+																	writeln('||*********************************************************||');
+																	writeln('||  Nombre: ', (nombre));
+																	writeln('||  Apellido: ', (apellido));
+																	writeln('||  Cedula: ', (cedula));
+																	writeln('||  Boletos comprados: ', cantBoletos);
+																	writeln('||=========================================================||');
+																	writeln('|| Cuenta total->  $', montoTotalIdaVuelta:5:2);
+																	writeln('||*********************************************************||');
+																	delay(3500);
+																end
+															else 
+																if (edad < 3) then
+																	begin
+																		textcolor(yellow);
+																		writeln(' ');
+																		writeln('||**********************************************************||');
+																		writeln('|| LOS NINOS MENORES DE 3 ANOS QUEDAN TOTALMENTE EXONERADOS ||');
+																		writeln('||**********************************************************||');
+																		delay(2000);
+																		
+																		precioBoletoIdaVuelta := boletoIdaVuelta;
+																		montoTotalIdaVuelta := precioBoletoIdaVuelta;
+																		
+																		clrscr;
+																		writeln(' ');
+																		textcolor(lightgreen);
+																		writeln('||*********************************************************||');
+																		writeln('||                      DATOS DE SU COMPRA                 ||');
+																		writeln('||*********************************************************||');
+																		writeln('||  Nombre: ', (nombre));
+																		writeln('||  Apellido: ', (apellido));
+																		writeln('||  Cedula: ', (cedula));
+																		writeln('||  Boletos comprados: ', cantBoletos);
+																		writeln('||=========================================================||');
+																		writeln('|| Cuenta total->  $', montoTotalIdaVuelta:5:2);
+																		writeln('||*********************************************************||');
+																		delay(3500);
+																	end;
+												end;
+										end 
+									else 
+										if (resp = 2) then
+											begin
+												clrscr;
+												writeln(' ');
+											
+												montoTotalIdaVuelta := boletoIdaVuelta * cantBoletos;
+												
+												textcolor(lightgreen);
+												writeln('||*********************************************************||');
+												writeln('||                      DATOS DE SU COMPRA                 ||');
+												writeln('||*********************************************************||');
+												writeln('||  Nombre: ', (nombre));
+												writeln('||  Apellido: ', (apellido));
+												writeln('||  Cedula: ', (cedula));
+												writeln('||  Boletos comprados: ', cantBoletos);
+												writeln('||=========================================================||');
+												writeln('|| Cuenta total->  $', montoTotalIdaVuelta:5:2);
+												writeln('||*********************************************************||');
+												delay(3500);
+											end;
+								end; //fin opcion 1
 								
 								'2': begin
-									writeln('||---------------------------------------------||');
-									writeln('||Usted selecciono la opcion 2. Boleto General ||');
-									//calculamos el costo total segun la cantidad de boletos
-									precioTotalBoletoGeneral := (boletoGeneral * cantBoletos);
-									writeln('|| Cuenta total: $', precioTotalBoletoGeneral:5:2); 
-									writeln('||---------------------------------------------||');
-									delay(3000);
-								end;
-								
-								'3': begin
-									writeln('||-----------------------------------------------||');
-									writeln('|| Usted selecciono la opcion 3. Boleto Especial ||');
-									//calculamos el costo total segun la cantidad de boletos
-									precioTotalBoletoEspecial := (boletoEspecial * cantBoletos);
-									writeln('|| Cuenta total: $', precioTotalBoletoEspecial:5:2); 
-									writeln('||-----------------------------------------------||');
-									delay(3000);
-								end;
-								
-								'4': begin
-									textcolor(lightgreen);
-									writeln('||*********************************************************||');
-									writeln('||                          FACTURA                        ||');
-									writeln('||*********************************************************||');
-									writeln('|| EMPRESA: Teleferico Merida.                             ||');
-									writeln('|| DIRECCION: Merida.                                      ||');
-									writeln('||*********************************************************||');
-									writeln('||  Nombre: ', (nombre));
-									writeln('||  Apellido: ', (apellido));
-									writeln('||  Cedula: ', (cedula));
-									writeln('||  Estacion: ', (estaciones));
-									writeln('||  Tramo: ', (tramos));
-									writeln('||  Boletos comprados: ', cantBoletos);
-									writeln('||  Tipo de Boletos: ', tipoBoleto);
-									writeln('||=========================================================||');
-									writeln('||                                 TOTAL A PAGAR->  ', montoTotal, '$');
-									writeln('||*********************************************************||');
-								end;
-							end;
+									writeln('||**************************************************||');
+									writeln('||Usted selecciono la opcion 2. Boleto General.     ||');
+									writeln('||**************************************************||');
+									
+									clrscr;
+									writeln(' ');
+									writeln('||--------------------------------------------------------------||');
+									writeln('||         Viaja con personas de tercera edad o Ninos?          ||');
+									writeln('||--------------------------------------------------------------||');
+									writeln('|| 1. Si                                                        ||');
+									writeln('|| 2. No                                                        ||');
+									writeln('||--------------------------------------------------------------||');
+									write('|| Indique su respuesta y presione ENTER: ');
+									readln(resp);
+									
+									if (resp = 1) then
+										begin
+											while (resp = 1) do
+												begin
+													writeln('  ');
+													writeln('||--------------------------------------------------------------||');
+													write('|| Ingrese la edad del nino/a y/o adulto mayor: ');
+													readln(edad); 
+									
+													if (edad >= 3) and (edad <= 12) or (edad >= 65) then
+														begin
+															writeln('  ');
+															writeln('||--------------------------------------------------------------||');
+															writeln('|| Se le incrementara $12 del Boleto Especial a su cuenta total ||');
+															writeln('||--------------------------------------------------------------||');
+															delay(2000);
+															
+															//calculamos el costo total segun la cantidad de boletos y tipo de boletos
+															precioBoletoGeneral := boletoGeneral;
+															precioBoletoEspecial := boletoEspecial; //EN ESTE CASO, COMO SOLO SE ESTA VENDIENDO EL BOLETO GENERAL, NO HACE FALTA MULTIPLICAR POR 2 
+															montoTotalGeneral := (precioBoletoGeneral + precioBoletoEspecial) * cantBoletos;
+															
+															clrscr;
+															writeln(' ');
+															textcolor(lightgreen);
+															writeln('||*********************************************************||');
+															writeln('||                      DATOS DE SU COMPRA                 ||');
+															writeln('||*********************************************************||');
+															writeln('||  Nombre: ', (nombre));
+															writeln('||  Apellido: ', (apellido));
+															writeln('||  Cedula: ', (cedula));
+															writeln('||  Boletos comprados: ', cantBoletos);
+															writeln('||=========================================================||');
+															writeln('|| Cuenta total->  $', montoTotalGeneral:5:2);
+															writeln('||*********************************************************||');
+															delay(3500);
+														end
+														else 
+															if (edad > 12) then 
+																begin
+																	writeln('||-----------------------------------------------------------||');
+																	writeln('|| Los ninos/as mayores de 12 anos cancelan el precio Normal ||');
+																	writeln('||-----------------------------------------------------------||');
+																	
+																	precioBoletoGeneral := boletoGeneral;
+																	montoTotalGeneral := precioBoletoGeneral * cantBoletos;
+																	
+																	clrscr;
+																	writeln(' ');
+																	textcolor(lightgreen);
+																	writeln('||*********************************************************||');
+																	writeln('||                      DATOS DE SU COMPRA                 ||');
+																	writeln('||*********************************************************||');
+																	writeln('||  Nombre: ', (nombre));
+																	writeln('||  Apellido: ', (apellido));
+																	writeln('||  Cedula: ', (cedula));
+																	writeln('||  Boletos comprados: ', cantBoletos);
+																	writeln('||=========================================================||');
+																	writeln('|| Cuenta total->  $', montoTotalGeneral:5:2);
+																	writeln('||*********************************************************||');
+																	delay(3500);
+																end
+															else 
+																if (edad < 3) then
+																	begin
+																		textcolor(yellow);
+																		writeln(' ');
+																		writeln('||**********************************************************||');
+																		writeln('|| LOS NINOS MENORES DE 3 ANOS QUEDAN TOTALMENTE EXONERADOS ||');
+																		writeln('||**********************************************************||');
+																		delay(2000);
+																		
+																		precioBoletoGeneral := boletoGeneral;
+																		montoTotalGeneral := precioBoletoGeneral;
+																		
+																		clrscr;
+																		writeln(' ');
+																		textcolor(lightgreen);
+																		writeln('||*********************************************************||');
+																		writeln('||                      DATOS DE SU COMPRA                 ||');
+																		writeln('||*********************************************************||');
+																		writeln('||  Nombre: ', (nombre));
+																		writeln('||  Apellido: ', (apellido));
+																		writeln('||  Cedula: ', (cedula));
+																		writeln('||  Boletos comprados: ', cantBoletos);
+																		writeln('||=========================================================||');
+																		writeln('|| Cuenta total->  $', montoTotalGeneral:5:2);
+																		writeln('||*********************************************************||');
+																		delay(3500);
+																	end;
+												end;
+										end 
+									else 
+										if (resp = 2) then
+											begin
+												clrscr;
+												writeln(' ');
+												
+												precioBoletoGeneral := boletoGeneral * cantBoletos;
+												
+												textcolor(lightgreen);
+												writeln('||*********************************************************||');
+												writeln('||                      DATOS DE SU COMPRA                 ||');
+												writeln('||*********************************************************||');
+												writeln('||  Nombre: ', (nombre));
+												writeln('||  Apellido: ', (apellido));
+												writeln('||  Cedula: ', (cedula));
+												writeln('||  Boletos comprados: ', cantBoletos);
+												writeln('||=========================================================||');
+												writeln('|| Cuenta total->  $', precioBoletoGeneral:5:2);
+												writeln('||*********************************************************||');
+												delay(3500);
+											end;
+								end; //fin opcion 2
+							end; //fin del case
 							
-						until (tipoBoleto = '4');
+						until (tipoBoleto = '1') or (tipoBoleto = '2');
 					end	
 					else if (cantBoletos > 60) then
 						begin
 							writeln(' ');
-							writeln('------------------------------------------------------------------------');
-							writeln('Excede el limite de la capacidad maxima de pasajeros, intente nuevamente');
-							writeln('------------------------------------------------------------------------');
+							writeln('||--------------------------------------------------------------------------||');
+							writeln('|| Excede el limite de la capacidad maxima de pasajeros, intente nuevamente ||');
+							writeln('||--------------------------------------------------------------------------||');
 							delay (2000);
 							
 							clrscr();
 						end;
+				end
+		else 
+			if op = 2 then
+			
+				asientosD := asientosD - cantBoletos;
+				boletosGenerales := cantBoletos;
+				boletosIdaVuelta := cantBoletos;
+				BoletosV := boletosGenerales + boletosIdaVuelta;
+				totalBoletosCancelados := boletosC;
+				totalBoletosGenerales := boletosGenerales * 20;
+				totalBoletosIdaVuelta := boletosIdaVuelta * 40;
+				montoTotal := totalBoletosGenerales + totalBoletosIdaVuelta;
+				
+				ventaBoletosGenerales := boletosGenerales + totalBoletosGenerales;
+				ventaBoletosIdaVuelta := boletosIdaVuelta + totalBoletosIdaVuelta;
+				totalidadVentas := totalidadVentas + BoletosV;
+				
+				begin
+					clrscr;
+					writeln('||=========================================================||');
+					writeln('||              SISTEMA DE CONTROL DE BOLETOS              ||');
+					writeln('||=========================================================||');
+					writeln('|| Total de Boletos vendidos: ', totalidadVentas, '        ||');
+					writeln('|| Boletos Generales vendidos: ', totalBoletosGenerales, ' ||');
+					writeln('|| Boletos Ida/Vuelta vendidos: ', totalBoletosGenerales, '||');
+					writeln('|| Boletos disponibles: ', asientosD, '                    ||');
+					writeln('||=========================================================||');
+					writeln(' ');
+					writeln(' ');
+					
+					writeln('||=========================================================||');
+					writeln('||                    REPORTE DE VENTAS                    ||');
+					writeln('||=========================================================||');
+					writeln('|| Ventas realizadas del día: ', montoTotal, '             ||');
+					writeln('|| Ventas boletos Generales: ', ventaBoletosGenerales, '   ||');
+					writeln('|| Ventas boletos Ida/Vuelta: ', ventaBoletosIdaVuelta, '  ||');
+					writeln('|| Total ventas: ', totalidadVentas, '                     ||');
+					writeln('||=========================================================||');
 				end;
-	until op = 3;
+	until op = 3
 end.
+
+{Elaborado por:
+* Paola Márquez. C.I: 27.125.784
+* Enderson Velasquez. C.I: 30.141.384}
