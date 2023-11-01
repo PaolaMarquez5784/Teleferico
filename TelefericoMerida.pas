@@ -6,7 +6,7 @@ const
 	boletoGeneral = 20;
 	boletoEspecial = 12;
 var
-	BoletosV, BoletosC, asientosD, edad, cantBoletos, op, resp, totalidadVentas: integer;
+	BoletosV, BoletosC, asientosD, cantBoletos, op, resp, totalidadVentas, edad: integer;
 	boletosIdaVuelta, boletosGenerales, boletosDisponibles, montoTotal, totalBoletos: integer;
 	totalBoletosCancelados, totalBoletosGenerales, totalBoletosIdaVuelta: integer;
 	nombre, apellido, cedula, estaciones, tramos, tipoBoleto: string;
@@ -33,7 +33,60 @@ begin
 		Gotoxy(10,6);
 		writeln('||********************************************************||');
 		writeln();
-		delay(3500);
+		writeln();
+		writeln();
+		
+		Gotoxy(10,7);
+		writeln('                             --                             ');
+		Gotoxy(10,8);
+		writeln('                           /    \                           ');
+		Gotoxy(10,9);
+		writeln('                        --        --                        ');
+		Gotoxy(10,10);
+		writeln('                       |            |                       ');   
+		Gotoxy(10,11);
+		writeln('    ----------------------------------------------------    ');
+		Gotoxy(10,12);
+		writeln('   |                                                    |   ');
+		Gotoxy(10,13);
+		writeln('    ----------------------------------------------------    ');
+		Gotoxy(10,14);
+		writeln('                            ||||                            ');
+		Gotoxy(10,15);
+		writeln('                            ||||                            ');
+		Gotoxy(10,16);
+		writeln('                            ||||                            ');
+		Gotoxy(10,17);
+		writeln('                            ||||                            ');
+		Gotoxy(10,18);
+		writeln('     __________________________________________________     ');
+		Gotoxy(10,19);
+		writeln('   /   ____________       ________       ____________   \   ');
+		Gotoxy(10,20);
+		writeln('  |   (            )     (        )     (            )   |  ');
+		Gotoxy(10,21);
+		writeln('  |   (            )     (        )     (            )   |  ');
+		Gotoxy(10,22);
+		writeln('  |   (            )     (        )     (            )   |  ');
+		Gotoxy(10,23);
+		writeln('  |   (            )     (        )     (            )   |  ');
+		Gotoxy(10,24);
+		writeln('  |   (____________)     (________)     (____________)   |  ');
+		Gotoxy(10,25);
+		writeln('  |                                                      |  ');
+		Gotoxy(10,26);
+		writeln('  |______________________________________________________|  ');
+		Gotoxy(10,27);
+		writeln('  |______________________________________________________|  ');
+		Gotoxy(10,28);
+		writeln('  |______________________________________________________|  ');
+		Gotoxy(10,29);
+		writeln('  |                                                      |  ');
+		Gotoxy(10,30);
+		writeln('  |                   TELEFERICO MERIDA                  |  ');
+		Gotoxy(10,31);
+		writeln('   \____________________________________________________/   ');
+		delay(5000);
 
 	repeat
 		clrscr;
@@ -63,22 +116,25 @@ begin
 				repeat
 					clrscr;
 					textcolor(white);
+					textcolor(yellow);
 					writeln('||==================================================================||');
 					writeln('|| EL TELEFERICO DE MERIDA POSEE 5 ESTACIONES DIVIDIDAS EN 4 TRAMOS ||');
 					writeln('||==================================================================||');
+					writeln();
 					
-					writeln(' ');
-					writeln('||------------------------------------------||');
-					writeln('|| Seleccione la estacion de su preferencia ||');
-					writeln('||------------------------------------------||');
-					writeln('||                ESTACIONES                ||');
-					writeln('||------------------------------------------||');
-					writeln('|| 1. Barinitas                             ||');
-					writeln('|| 2. La montana                            ||');
-					writeln('|| 3. La Aguada                             ||');
-					writeln('|| 4. Loma Redonda                          ||');
-					writeln('|| 5. Pico Espejo                           ||');
-					writeln('||------------------------------------------||');
+					textcolor(white);
+					writeln();
+					writeln('||------------------------------------------------------------------||');
+					writeln('|| Seleccione la estacion de su preferencia                         ||');
+					writeln('||------------------------------------------------------------------||');
+					writeln('||                             ESTACIONES                           ||');
+					writeln('||------------------------------------------------------------------||');
+					writeln('|| 1. Barinitas                                                     ||');
+					writeln('|| 2. La montana                                                    ||');
+					writeln('|| 3. La Aguada                                                     ||');
+					writeln('|| 4. Loma Redonda                                                  ||');
+					writeln('|| 5. Pico Espejo                                                   ||');
+					writeln('||------------------------------------------------------------------||');
 					write('|| Indique el numero y presione ENTER: ');
 					readln(estaciones);
 					
@@ -133,16 +189,16 @@ begin
 					clrscr;
 					textcolor(white);
 					writeln(' ');
-					writeln('||------------------------------------------||');
-					writeln('|| Los tramos disponibles por estacion son: ||');
-					writeln('||------------------------------------------||');
-					writeln('||                  TRAMOS                  ||');
-					writeln('||------------------------------------------||');
-					writeln('|| 1. Barinitas - La Montana                ||');
-					writeln('|| 2. La montana - La Aguada                ||');
-					writeln('|| 3. La Aguada - Loma Redonda              ||');
-					writeln('|| 4. Loma Redonda - Pico Espejo            ||');
-					writeln('||------------------------------------------||');
+					writeln('||------------------------------------------------------------------||');
+					writeln('|| Los tramos disponibles por estacion son:                         ||');
+					writeln('||------------------------------------------------------------------||');
+					writeln('||                               TRAMOS                             ||');
+					writeln('||------------------------------------------------------------------||');
+					writeln('|| 1. Barinitas - La Montana                                        ||');
+					writeln('|| 2. La montana - La Aguada                                        ||');
+					writeln('|| 3. La Aguada - Loma Redonda                                      ||');
+					writeln('|| 4. Loma Redonda - Pico Espejo                                    ||');
+					writeln('||------------------------------------------------------------------||');
 					write('|| Indique el numero y presione ENTER: ');
 					readln(tramos);
 					
@@ -279,6 +335,8 @@ begin
 															writeln('|| Cuenta total->  $', montoTotalIdaVuelta:5:2);
 															writeln('||*********************************************************||');
 															delay(3500);
+															
+															resp := 0;
 														end
 														else 
 															if (edad > 12) then 
@@ -304,6 +362,8 @@ begin
 																	writeln('|| Cuenta total->  $', montoTotalIdaVuelta:5:2);
 																	writeln('||*********************************************************||');
 																	delay(3500);
+																	
+																	resp := 0;
 																end
 															else 
 																if (edad < 3) then
@@ -332,8 +392,11 @@ begin
 																		writeln('|| Cuenta total->  $', montoTotalIdaVuelta:5:2);
 																		writeln('||*********************************************************||');
 																		delay(3500);
+																		
+																		resp := 0;
 																	end;
 												end;
+											break;
 										end 
 									else 
 										if (resp = 2) then
@@ -410,6 +473,8 @@ begin
 															writeln('|| Cuenta total->  $', montoTotalGeneral:5:2);
 															writeln('||*********************************************************||');
 															delay(3500);
+															
+															resp := 0; //Nos sirve para salir del while y volver al menu de inicio
 														end
 														else 
 															if (edad > 12) then 
@@ -435,6 +500,8 @@ begin
 																	writeln('|| Cuenta total->  $', montoTotalGeneral:5:2);
 																	writeln('||*********************************************************||');
 																	delay(3500);
+																	
+																	resp := 0;
 																end
 															else 
 																if (edad < 3) then
@@ -463,8 +530,11 @@ begin
 																		writeln('|| Cuenta total->  $', montoTotalGeneral:5:2);
 																		writeln('||*********************************************************||');
 																		delay(3500);
+																		
+																		resp := 0;
 																	end;
 												end;
+											break;
 										end 
 									else 
 										if (resp = 2) then
